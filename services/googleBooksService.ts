@@ -1,7 +1,8 @@
 import { Book } from '@/types/book';
+import { GOOGLE_BOOKS_API_KEY } from '@env';
 
 const BASE_URL = 'https://www.googleapis.com/books/v1';
-const API_KEY = 'AIzaSyBsU5xA5QArqlBMKEuBGfvK0AoGXdYDACg'; // You'll need to replace this with your actual API key
+const API_KEY = GOOGLE_BOOKS_API_KEY;
 
 interface GoogleBooksSearchResponse {
   items?: Array<{

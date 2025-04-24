@@ -1,3 +1,59 @@
+# Wildfire - Book Tracking App
+
+A React Native app for tracking and managing your reading journey.
+
+## Environment Setup
+
+1. Copy `.env.example` to `.env`:
+   ```bash
+   cp .env.example .env
+   ```
+
+2. Replace `your_api_key_here` in `.env` with your actual Google Books API key:
+   ```
+   GOOGLE_BOOKS_API_KEY=your_actual_api_key_here
+   ```
+
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+4. Start the development server:
+   ```bash
+   npm start
+   ```
+
+## Features
+
+- Search for books using Google Books API and OpenLibrary
+- Add books to your library
+- Track reading progress
+- Rate and review books
+- Add notes to books
+- Dark mode support
+
+## Tech Stack
+
+- React Native
+- Expo
+- TypeScript
+- AsyncStorage for local data persistence
+- Google Books API
+- OpenLibrary API
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
 # Welcome to your Expo app 👋
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
