@@ -81,7 +81,7 @@ export default function DiscoverScreen() {
             <FontAwesome name="search" size={20} color={colors.textSecondary} style={styles.searchIcon} />
           </Text>
           <TextInput
-            style={[styles.searchInput, { color: colors.text }]}
+            style={[styles.searchInput, { color: colors.text, marginLeft: 5 }]}
             placeholder="Search for books..."
             placeholderTextColor={colors.textSecondary}
             value={searchQuery}
