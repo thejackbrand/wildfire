@@ -36,14 +36,12 @@ export default function BookDetails() {
         // First check if the book is in the library
         const libraryBook = books.find(b => b.id === id);
         if (libraryBook) {
-          console.log('Found book in library:', libraryBook); // Debug log
           setBook(libraryBook);
           setSelectedStatus(libraryBook.status || 'future');
           slideAnim.setValue(libraryBook.status === 'past' ? 0 : 1);
         } else {
           // If not in library, fetch from API
           const apiBook = await getBookDetails(id as string);
-          console.log('Fetched book from API:', apiBook); // Debug log
           if (apiBook) {
             setBook(apiBook);
             setSelectedStatus('future');
@@ -140,8 +138,6 @@ export default function BookDetails() {
       </View>
     );
   }
-
-  console.log('Rendering book:', book); // Debug log
 
   const isInLibrary = books.some(b => b.id === book.id);
 
