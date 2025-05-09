@@ -7,16 +7,18 @@
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
-    "newArchEnabled": true,
+    "newArchEnabled": false,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.thejackbrand.wildfire"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.thejackbrand.wildfire"
+      "package": "com.thejackbrand.wildfire",
+      "permissions": ["INTERNET"]
     },
     "web": {
       "bundler": "metro",
@@ -45,6 +47,11 @@
       "eas": {
         "projectId": "6004e5b2-803d-4ffd-b331-35987c36ba5c"
       }
+    },
+    "splash": {
+      "image": "./assets/images/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
     }
   }
 }

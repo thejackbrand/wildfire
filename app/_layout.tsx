@@ -3,7 +3,7 @@ import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
-import { useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { useInitialization } from '@/hooks/useInitialization';
 import LoadingScreen from './loading';
@@ -19,17 +19,27 @@ export const unstable_settings = {
 };
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
-SplashScreen.preventAutoHideAsync();
+SplashScreen.preventAutoHideAsync().catch(() => {
+  /* ignore error */
+});
 
 export default function RootLayout() {
   const { colorScheme, isInitialized: isThemeInitialized } = useColorScheme();
   const { isInitialized: isAppInitialized } = useInitialization();
 
-  useEffect(() => {
+  const onLayoutRootView = useCallback(async () => {
     if (isAppInitialized && isThemeInitialized) {
-      SplashScreen.hideAsync();
+      try {
+        await SplashScreen.hideAsync();
+      } catch (e) {
+        // Ignore error
+      }
     }
   }, [isAppInitialized, isThemeInitialized]);
+
+  useEffect(() => {
+    onLayoutRootView();
+  }, [onLayoutRootView]);
 
   if (!isAppInitialized || !isThemeInitialized) {
     return <LoadingScreen />;
@@ -37,10 +47,10 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="book/[id]" options={{ presentation: 'card', headerShown: false }} />
-        <Stack.Screen name="settings" options={{ presentation: 'card' , headerShown: false, }} />
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="(tabs)" />
+        <Stack.Screen name="book/[id]" options={{ presentation: 'card' }} />
+        <Stack.Screen name="settings" options={{ presentation: 'card' }} />
       </Stack>
     </ThemeProvider>
   );
